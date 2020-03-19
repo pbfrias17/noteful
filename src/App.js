@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import DummyStore from './dummy-store';
+import Header from './Header';
+import NoteListNav from './NoteListNav';
+import NoteListMain from './NoteListMain';
+import NotePageNav from './NotePageNav';
+import NotePageMain from './NotePageMain';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      folders: DummyStore.folders,
+      notes: DummyStore.notes,
+    }
+  }
+
+  render() {
+    console.log(DummyStore)
+    return (
+      <div>
+        <Header />
+        <div className="container">
+          <nav>
+            <NoteListNav folders={this.state.folders}/>
+            {/* <NotePageNav folders={this.state.folders}/> */}
+          </nav>
+          <main>
+            <NoteListMain notes={this.state.notes}/>
+            {/* <NotePageMain notes={this.state.notes}/> */}
+          </main>
+        </div>
+      </div>
+    )
+  }
 }
 
 export default App;
