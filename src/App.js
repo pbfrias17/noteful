@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Route } from "react-router-dom";
 import './App.css';
 import DummyStore from './dummy-store';
 import Header from './Header';
@@ -17,13 +18,21 @@ class App extends Component {
   }
 
   render() {
-    console.log(DummyStore)
     return (
       <div>
         <Header />
         <div className="container">
           <nav>
-            <NoteListNav folders={this.state.folders}/>
+            <Route exact path="/" render={() => 
+              <NoteListNav folders={this.state.folders}/>
+            } />
+            <Route path="/folders/:folderId" render={(routeProps) => { 
+              const folderId = routeProps.match.params.folderId
+              const selectedFolder = this.state.folders.find(folder => folder.id === folderId)
+
+              return <NotePageNav folderName={selectedFolder.name} {...routeProps}/>
+            } }
+            />
             {/* <NotePageNav folders={this.state.folders}/> */}
           </nav>
           <main>

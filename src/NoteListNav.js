@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { NavLink } from "react-router-dom";
 
 class NoteListNav extends Component {
     render() {
@@ -8,10 +9,9 @@ class NoteListNav extends Component {
                 <ul className="folder-list">
                     {this.props.folders.map(folder =>
                         <li className="folder-item">
-                            {/* use nav link */}
-                            <a href='#' className="folder">
-                                {folder.name}
-                        </a>
+                          <NavLink to={`/folders/${folder.id}`}>
+                            <span>{folder.name}</span>
+                          </NavLink>
                         </li>
                     )}
                 </ul>
@@ -22,3 +22,8 @@ class NoteListNav extends Component {
 }
 
 export default NoteListNav;
+
+
+// <NavLink to="/faq" activeClassName="selected">
+  // FAQs
+// </NavLink>
