@@ -3,11 +3,12 @@ import Note from './Note';
 
 class NotePageMain extends Component {
     render() {
+        // console.log(this.props)
         return (
                 <section className="note-page-main-container">
-                    <Note selectedNote={this.props.selectedNote}/>
+                    <Note />
                     <div>
-                        <p className="note-content">{this.props.selectedNote.content}</p>
+                        <p className="note-content">{this.props.content}</p>
                     </div>
                 </section>
         )
