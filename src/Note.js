@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 class Note extends Component {
     render() {
-        console.log(note.name)
         return (
             <div className="note-container">
                 {this.props.notes.map(note =>

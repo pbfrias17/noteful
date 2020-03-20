@@ -42,7 +42,7 @@ class App extends Component {
               const noteId = routeProps.match.params.noteId
               const selectedNote = this.state.notes.find(note => note.id === noteId)
 
-              return <NotePageMain noteName={selectedNote.name} {...routeProps} />
+              return <NotePageMain selectedNote={selectedNote} {...routeProps} />
             }}
             />
           </main>
