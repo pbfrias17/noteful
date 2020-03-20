@@ -27,9 +27,8 @@ class App extends Component {
               <NoteListNav folders={this.state.folders} />
             } />
             <Route path="/folders/:folderId" render={(routeProps) => {
-              // console.log(routeProps)
-              const folderId = routeProps.match.params.folderId;
-              const selectedFolder = this.state.folders.find(folder => folder.id === folderId);
+              const folderId = routeProps.match.params.folderId
+              const selectedFolder = this.state.folders.find(folder => folder.id === folderId)
 
               return <NotePageNav folderName={selectedFolder.name} {...routeProps} />
             }}
@@ -39,14 +38,13 @@ class App extends Component {
             <Route exact path="/" render={() =>
               <NoteListMain notes={this.state.notes} />
             } />
-            {/* <Route path="/notes/:noteId" render={(routeProps) => {
-              // console.log(routeProps)
-              const noteId = routeProps.match.params.noteId;
-              const selectedNote = this.state.notes.find(note => note.id === noteId);
-        
-              return <NotePageMain noteContent={selectedNote.content} {...routeProps} />
+            <Route path="/notes/:noteId" render={(routeProps) => {
+              const noteId = routeProps.match.params.noteId
+              const selectedNote = this.state.notes.find(note => note.id === noteId)
+
+              return <NotePageMain noteName={selectedNote.name} {...routeProps} />
             }}
-            /> */}
+            />
           </main>
         </div>
       </div>

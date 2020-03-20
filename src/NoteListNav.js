@@ -22,8 +22,3 @@ class NoteListNav extends Component {
 }
 
 export default NoteListNav;
-
-
-// <NavLink to="/faq" activeClassName="selected">
-  // FAQs
-// </NavLink>

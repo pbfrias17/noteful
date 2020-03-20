@@ -1,19 +1,14 @@
-
 import React, { Component } from 'react';
 import Note from './Note';
 
 class NoteListMain extends Component {
     render() {
+        // console.log(this.props)
         return (
             <section className="note-list-main-container">
                 <ul className="note-list">
-                    {this.props.notes.map(note =>
-                        <li className="note-item">
-                            <Note 
-                            name={note.name}
-                            content={note.modified} />
-                        </li>
-                    )}
+                    <Note
+                        notes={this.props.notes} />
                 </ul>
                 <button type="button" className="add-note">Add Note</button>
             </section>
