@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Route } from "react-router-dom";
 import './App.css';
 import DummyStore from './dummy-store';
 import Header from './Header';
@@ -17,18 +18,31 @@ class App extends Component {
   }
 
   render() {
-    console.log(DummyStore)
     return (
       <div>
         <Header />
         <div className="container">
           <nav>
-            <NoteListNav folders={this.state.folders}/>
-            {/* <NotePageNav folders={this.state.folders}/> */}
+            <Route exact path="/" render={() =>
+              <NoteListNav folders={this.state.folders} />
+            } />
+            <Route path="/folders/:folderId" render={(routeProps) => {
+              // console.log(routeProps)
+              const folderId = routeProps.match.params.folderId;
+              const selectedFolder = this.state.folders.find(folder => folder.id === folderId);
+
+              return <NotePageNav folderName={selectedFolder.name} {...routeProps} />
+            }}
+            />
           </nav>
           <main>
-            <NoteListMain notes={this.state.notes}/>
-            {/* <NotePageMain notes={this.state.notes}/> */}
+            <Route exact path="/" render={() =>
+              <NoteListMain notes={this.state.notes} />
+            } />
+            <Route path="/notes/:noteId" render={(routeProps) => {
+              console.log(routeProps)
+            }}
+            />
           </main>
         </div>
       </div>
