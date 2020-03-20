@@ -41,7 +41,7 @@ class App extends Component {
             <Route path="/notes/:noteId" render={(routeProps) => {
               const noteId = routeProps.match.params.noteId
               const selectedNote = this.state.notes.find(note => note.id === noteId)
-
+              
               return <NotePageMain selectedNote={selectedNote} {...routeProps} />
             }}
             />
