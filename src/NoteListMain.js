@@ -9,6 +9,7 @@ class NoteListMain extends Component {
                     {this.props.notes.map(note =>
                         <li className="note-item">
                             <Note 
+                            id={note.id}
                             name={note.name}
                             modified={note.modified} />
                         </li>

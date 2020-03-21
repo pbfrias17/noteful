@@ -6,7 +6,7 @@ class NotePageMain extends Component {
         // console.log(this.props)
         return (
                 <section className="note-page-main-container">
-                    <Note />
+                    <Note {...this.props.selectedNote} />
                     <div>
                         <p className="note-content">{this.props.content}</p>
                     </div>

@@ -3,12 +3,13 @@ import { Link } from "react-router-dom";
 
 class Note extends Component {
     render() {
+        console.log(this.props)
         return (
             <div className="note-container">
                 <h3>
-                    <Link to={`/notes/${note.id}`} className="note-name">{note.name}</Link>
+                    <Link to={`/notes/${this.props.id}`} className="note-name">{this.props.name}</Link>
                 </h3>
-                <p className="modified">{note.modified}</p>
+                <p className="modified">{this.props.modified}</p>
                 <button type="button" className="delete-note">Delete Note</button>
             </div>
         )

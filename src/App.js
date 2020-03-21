@@ -36,12 +36,12 @@ class App extends Component {
           </nav>
           <main>
             <Route exact path="/" render={() =>
-              <NoteListMain notes={this.state.notes} />
+              <NoteListMain notes={this.state.notes}  />
             } />
             <Route path="/notes/:noteId" render={(routeProps) => {
               const noteId = routeProps.match.params.noteId
               const selectedNote = this.state.notes.find(note => note.id === noteId)
-              
+
               return <NotePageMain selectedNote={selectedNote} {...routeProps} />
             }}
             />
