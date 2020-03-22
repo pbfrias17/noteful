@@ -28,6 +28,9 @@ main {
 }
 
 /* Note List Nav */
+.active-folder {
+    background-color: yellow;
+}
 
 .note-list-nav-container {
     display: flex;
@@ -40,7 +43,7 @@ main {
     padding: 10px;
 }
 
-.folder {
+.folder-item a {
     text-decoration: none;
     color: black;
 }
