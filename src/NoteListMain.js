@@ -8,10 +8,14 @@ class NoteListMain extends Component {
         const folderId = this.props.match.params.folderId
         const { folders, notes } = this.context;
         const selectedFolder = folders.find(folder => folder.id === folderId)
+        // selectedFolder is UNDEFINED when folder id doesnt exist --> ie: not in the URL
+        // selectedFolder exists when folder id exist --> ie: exist in the url  (http://localhost:3000/folders/b0715efe-ffaf-11e8-8eb2-f2801f1b9fd1)
         const notesToDisplay  = notes.filter(note => {
+          // only FILTER when selectedFolder exists
           if(selectedFolder) {
             return note.folderId === selectedFolder.id; // true false
           }
+          // otherwise return it ALL
          return true;
         });
 
