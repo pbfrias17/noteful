@@ -5,8 +5,9 @@ import Context from './Context';
 class NoteListMain extends Component {
     static contextType = Context
     render() {
-        const { folders, notes } = this.context
         const folderId = this.props.match.params.folderId
+        if(!folderId) return null;
+        const { folders, notes } = this.context;
         const selectedFolder = folders.find(folder => folder.id === folderId)
         const notesInFolder = notes.filter(note => {
             return note.folderId === selectedFolder.id;
