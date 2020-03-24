@@ -31,60 +31,28 @@ class App extends Component {
         <Context.Provider value={contextValue}>
           <div className="container">
             <nav>
-              <Route path="/notes/:noteId" 
-              component={NotePageNav}
-              // render={(routeProps) => {
-              //   const noteId = routeProps.match.params.noteId
-              //   const selectedNote = this.state.notes.find(note => note.id === noteId)
-              //   const selectedFolder = this.state.folders.find(folder => folder.id === selectedNote.folderId);
-
-              //   return <NotePageNav folderName={selectedFolder.name} {...routeProps} />
-              // }}
+              <Route exact path="/"
+                component={NoteListNav}
               />
-              <Route path="/folders/:folderId" 
-              component={NoteListNav}
-              // render={(routeProps) => {
-              //   const folderId = routeProps.match.params.folderId;
-              //   const selectedFolder = this.state.folders.find(folder => folder.id === folderId);
 
-              //   return <NoteListNav folders={this.state.folders} selectedFolder={selectedFolder.name} {...routeProps} />
-              // }}
+              <Route path="/folders/:folderId"
+                component={NoteListNav}
               />
-              <Route exact path="/" 
-              component={NoteListNav}
-              // render={() =>
-              //   <NoteListNav folders={this.state.folders} />
-              // } 
+
+              <Route path="/notes/:noteId"
+                component={NotePageNav}
               />
             </nav>
             <main>
-              <Route path="/notes/:noteId" 
-              component={NotePageMain}
-              // render={(routeProps) => {
-              //   const noteId = routeProps.match.params.noteId
-              //   const selectedNote = this.state.notes.find(note => note.id === noteId)
-
-              //   return <NotePageMain selectedNote={selectedNote} {...routeProps} />
-              // }}
+              <Route exact path="/"
+                component={NoteListMain}
               />
-              <Route path="/folders/:folderId" 
-              component={NoteListMain}
-              // render={(routeProps) => {
-              //   const folderId = routeProps.match.params.folderId
-              //   const selectedFolder = this.state.folders.find(folder => folder.id === folderId)
-              //   const notesInFolder = this.state.notes.filter(note => {
-              //     return note.folderId === selectedFolder.id;
-              //   });
-
-              //   return <NoteListMain notes={notesInFolder} {...routeProps} />
-              // }}
+              <Route path="/folders/:folderId"
+                component={NoteListMain}
               />
-              <Route exact path="/" 
-              component={NoteListMain}
-              // render={() =>
-              //   <NoteListMain notes={this.state.notes} />
-              // }
-               />
+              <Route path="/notes/:noteId"
+                component={NotePageMain}
+              />
             </main>
           </div>
         </Context.Provider>
