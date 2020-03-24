@@ -6,16 +6,19 @@ class NoteListMain extends Component {
     static contextType = Context
     render() {
         const folderId = this.props.match.params.folderId
-        if(!folderId) return null;
         const { folders, notes } = this.context;
         const selectedFolder = folders.find(folder => folder.id === folderId)
-        const notesInFolder = notes.filter(note => {
-            return note.folderId === selectedFolder.id;
+        const notesToDisplay  = notes.filter(note => {
+          if(selectedFolder) {
+            return note.folderId === selectedFolder.id; // true false
+          }
+         return true;
         });
+
         return (
             <section className="note-list-main-container">
                 <ul className="note-list">
-                    {notesInFolder.map(note =>
+                    {notesToDisplay.map(note =>
                         <li className="note-item" key={note.id}>
                             <Note
                                 id={note.id}
