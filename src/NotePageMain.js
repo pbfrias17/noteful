@@ -6,7 +6,6 @@ class NotePageMain extends Component {
     static contextType = Context
     render() {
         const noteId = this.props.match.params.noteId
-        if(!noteId) return null;
         const { notes } = this.context
         const selectedNote = notes.find(note => note.id === noteId)
         return (

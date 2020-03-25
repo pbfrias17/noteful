@@ -6,7 +6,7 @@ class NotePageNav extends Component {
     render() {
         // console.log(this.props)
         const { notes, folders } = this.context
-        console.log(notes, folders)
+        // console.log(notes, folders)
         const noteId = this.props.match.params.noteId
         const selectedNote = notes.find(note => note.id === noteId)
         const selectedFolder = folders.find(folder => folder.id === selectedNote.folderId);
