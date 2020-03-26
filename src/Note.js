@@ -23,6 +23,7 @@ class Note extends Component {
             })
             .then(() => {
                 this.context.deleteNote(noteId)
+                console.log(noteId)
                 // allow parent to perform extra behaviour
                 this.props.onDeleteNote(noteId)
             })

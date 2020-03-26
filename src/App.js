@@ -21,6 +21,9 @@ class App extends Component {
   }
 
   deleteNote = (noteId) => {
+    // console.log(noteId)
+    // console.log(this.state.notes) //you should see all notes here
+    // console.log(this.state.notes.filter(note => note.id !== noteId)) //you should see filtered notes 
     this.setState({
       notes: this.state.notes.filter(note => note.id !== noteId)
     })
