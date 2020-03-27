@@ -9,6 +9,8 @@ import NotePageNav from './NotePageNav';
 import NotePageMain from './NotePageMain';
 import Context from './Context';
 import config from './config';
+import AddNote from './AddNote';
+import AddFolder from './AddFolder';
 
 class App extends Component {
   constructor(props) {
@@ -24,9 +26,73 @@ class App extends Component {
     // console.log(noteId)
     // console.log(this.state.notes) //you should see all notes here
     // console.log(this.state.notes.filter(note => note.id !== noteId)) //you should see filtered notes 
-    this.setState({
-      notes: this.state.notes.filter(note => note.id !== noteId)
+
+    fetch(`${config.API_ENDPOINT}/notes/${noteId}`, {
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json'
+      },
     })
+      .then(res => {
+        if (!res.ok)
+          return res.json().then(e => Promise.reject(e))
+        return res.json()
+      })
+      .then(() => {
+        this.setState({
+          notes: this.state.notes.filter(note => note.id !== noteId)
+        })
+      })
+      .catch(error => {
+        console.error({ error })
+      })
+  }
+
+  addNote = (note) => {
+    fetch(`${config.API_ENDPOINT}/notes`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(note)
+    })
+      .then(res => {
+        if (!res.ok)
+          return res.json().then(e => Promise.reject(e))
+        return res.json()
+      })
+      .then((addedNote) => {
+        // console.log(addedNote)
+        this.setState({
+          notes: [...this.state.notes, addedNote]
+        })
+      })
+      .catch(error => {
+        console.error({ error })
+      })
+  }
+
+  addFolder = (folder) => {
+    fetch(`${config.API_ENDPOINT}/folders`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(folder),
+    })
+      .then(res => {
+        if (!res.ok)
+          return res.json().then(e => Promise.reject(e))
+        return res.json()
+      })
+      .then(addedFolder => {
+        this.setState({
+          folders: [...this.state.folders, addedFolder]
+        })
+      })
+      .catch(error => {
+        console.error({ error })
+      })
   }
 
   componentDidMount() {
@@ -55,6 +121,8 @@ class App extends Component {
       folders: this.state.folders,
       notes: this.state.notes,
       deleteNote: this.deleteNote,
+      addNote: this.addNote,
+      addFolder: this.addFolder,
     }
     return (
       <div>
@@ -84,10 +152,16 @@ class App extends Component {
               <Route path="/notes/:noteId"
                 component={NotePageMain}
               />
+              <Route path="/add-folder"
+                component={AddFolder}
+              />
+              <Route path="/add-note"
+                component={AddNote}
+              />
             </main>
           </div>
         </Context.Provider>
-      </div>
+      </div >
     )
   }
 }

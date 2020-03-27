@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import Context from './Context';
 
 class NoteListNav extends Component {
@@ -19,7 +19,7 @@ class NoteListNav extends Component {
                         </li>
                     )}
                 </ul>
-                <button type="button" className="add-folder">Add Folder</button>
+                <Link to="/add-folder" type="button" className="add-folder">Add Folder</Link>
             </div>
         )
     }

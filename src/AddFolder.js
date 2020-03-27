@@ -7,50 +7,30 @@
 
 import React, { Component } from "react";
 import './AddFolder.css';
-import ValidationError from "./ValidationError";
+import Context from './Context';
 
 class AddFolder extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            name: {
-                value: "",
-                touched: false
-            }
-        }
-    }
+    static contextType = Context
 
-    updateName(name) {
-        this.setState({ name: { value: name, touched: true } });
+    handleSubmit = e => {
+        e.preventDefault();
+        const newFolder = {
+            name: e.target['folder-name'].value
+          }
+
+        this.context.addFolder(newFolder)
     }
 
 
-    handleSubmit(event) {
-        event.preventDefault();
-        const { name } = this.state;
-
-        console.log('Name: ', name.value);
-
-        // api call here?
-    }
-
-    validateName() {
-        const name = this.state.name.value.trim();
-        if (name.length === 0) {
-            return 'Name is required';
-        }
-    }
 
     render() {
-        const nameError = this.validateName();
-
         return (
             <form className="add-folder" onSubmit={e => this.handleSubmit(e)}>
-                <h2>Add Folder</h2>
-                <label htmlFor="name">Name</label>
+                <h2>Add a Folder</h2>
+
+                <label htmlFor="name">Name:</label>
                 <input type="text" className="add-folder-input"
-                    name="name" id="name" />
-                {this.state.name.touched && <ValidationError message={nameError} />}
+                    name="folder-name" id="name" />
 
                 <button type="submit" className="save-button">
                     Save
